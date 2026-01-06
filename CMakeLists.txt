@@ -4,6 +4,7 @@ project(SimpleTBG CXX)
 
 add_executable(SimpleTBG
     src/main.cpp
+    src/entity.cpp
 )
 
 target_include_directories(SimpleTBG PRIVATE
