@@ -16,6 +16,7 @@ add_executable(SimpleTBG
     module/imgui/imgui_widgets.cpp
 
     module/rlImGui/rlImGui.cpp
+    src/entity.cpp
 )
 
 target_include_directories(SimpleTBG PRIVATE
