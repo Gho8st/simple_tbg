@@ -8,6 +8,7 @@ add_executable(SimpleTBG
     src/main.cpp
     src/states/menu_state.cpp
     src/states/state_manager.cpp
+    src/states/battle_state.cpp
 
     module/imgui/imgui.cpp
     module/imgui/imgui_draw.cpp
