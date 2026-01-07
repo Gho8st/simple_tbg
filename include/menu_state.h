@@ -8,8 +8,9 @@ class StateManager;
 class MenuState : public State {
     private:
         StateManager& manager;
+        bool debug;
     public:
-        MenuState(StateManager& manager);
+        MenuState(StateManager& manager, bool debug);
         void update() override;
         void draw() override;
 };

@@ -17,28 +17,31 @@ int main(int argc, char** argv) {
     }
 
     int arg = stoi(argv[1]);
+    bool debug;
+    if (arg == 1) debug = false;
+    else if (arg == 2) debug = true;
     
-    if (arg == 1) {
-        const int screenWidth = 800;
-        const int screenHeight = 640;
-        
+    const int screenWidth = 800;
+    const int screenHeight = 640;
+    
+    InitWindow(screenWidth, screenHeight, "Hello World");
+    SetTargetFPS(60);
+    StateManager stateManager;
+    stateManager.change_state(std::make_unique<MenuState>(stateManager, debug));
+    rlImGuiSetup(true);
+    
+    while(!WindowShouldClose()) {
+        stateManager.update();
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
 
-        InitWindow(screenWidth, screenHeight, "Hello World");
-        SetTargetFPS(60);
-        StateManager stateManager;
-        stateManager.change_state(std::make_unique<MenuState>(stateManager));
-        
-        while(!WindowShouldClose()) {
-            stateManager.update();
-            
-            BeginDrawing();
-            ClearBackground(RAYWHITE);
-            stateManager.draw();
-            EndDrawing();
-        }
+        rlImGuiBegin();
+        stateManager.draw();
+        rlImGuiEnd();
+        EndDrawing();
+    }
 
         CloseWindow();
-    }
 
     return 0;
 }

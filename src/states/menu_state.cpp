@@ -3,14 +3,14 @@
 #include "state_manager.h"
 #include "raylib.h"
 
-MenuState::MenuState(StateManager& manager) : manager(manager) {
-
+MenuState::MenuState(StateManager& manager, bool debug) : manager(manager) {
+    this->debug = debug;
 }
 
 
 void MenuState::update() {
     if (IsKeyPressed(KEY_ENTER)) {
-        manager.change_state(std::make_unique<BattleState>(manager));
+        manager.change_state(std::make_unique<BattleState>(manager, debug));
     }
 }
 

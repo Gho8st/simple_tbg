@@ -6,6 +6,12 @@
 
 class StateManager;
 
+enum Outcome {
+    Player,
+    Enemy,
+    None
+};
+
 class BattleState : public State {
     private:
         StateManager& manager;
@@ -13,9 +19,11 @@ class BattleState : public State {
         Entity player;
         Entity enemy;
         bool ifPlayerTurn = true;
+        bool debug;
 
+        Outcome outcome = Outcome::None;
     public:
-        BattleState(StateManager& manager);
+        BattleState(StateManager& manager, bool debug);
         void update() override;
         void draw() override;
 };
