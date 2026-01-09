@@ -1,0 +1,84 @@
+{
+    "version" : 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 22,
+        "patch": 1
+    },
+
+    "configurePresets": [
+        {
+            "name":"base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}"
+        },
+        {
+            "name": "linux-release",
+            "inherits":"base",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "linux-debug",
+            "inherits":"base",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "windows-release",
+            "inherits":"base",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "windows-debug",
+            "inherits":"base",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        }
+    ],
+
+    "buildPresets": [
+        {
+            "name" : "linux-release",
+            "configurePreset": "linux-release"
+        },
+        {
+            "name" : "linux-debug",
+            "configurePreset": "linux-debug"
+        },
+        {
+            "name" : "windows-release",
+            "configurePreset": "windows-release"
+        },
+        {
+            "name" : "windows-debug",
+            "configurePreset": "windows-debug"
+        }
+    ]
+}
