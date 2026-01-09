@@ -1,4 +1,5 @@
 #include "battle_state.h"
+#include "menu_state.h"
 #include "state_manager.h"
 #include "raylib.h"
 #include "raygui.h"
@@ -52,6 +53,10 @@ void BattleState::draw() {
             DrawText("Player Won!!!", 200, 200, 20, GRAY);
         } else {
             DrawText("Enemy Won!!!", 200, 200, 20, GRAY);
+        }
+
+        if (GuiButton({250, 250, 100, 25}, "Return")) {
+            manager.change_state(std::make_unique<MenuState>(manager, debug));
         }
     }
 }
